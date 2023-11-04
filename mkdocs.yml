@@ -7,6 +7,7 @@ theme:
   features:
     - navigation.sections
     - navigation.top
+    - navigation.footer
     - toc.integrate
     - toc.follow
     - search.suggest
@@ -21,17 +22,17 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
       primary: green
-      accent: lime
+      accent: orange
     - scheme: default
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
       primary: green
-      accent: lime
+      accent: orange
 
 markdown_extensions:
   - toc:
-      toc_depth: 2
+      toc_depth: 3
   - admonition
   - attr_list
   - footnotes
@@ -52,3 +53,13 @@ extra_css:
 
 copyright: |
   &copy; 2023 <a href="https://github.com/jmoscola" target="_blank" rel="noopener">James Moscola</a>
+
+nav:
+  - 'index.md'
+  - 'metamask_installation.md'
+  - 'metamask_configuration.md'
+  - 'acquiring_testnet_tokens.md'
+  - 'blockchain_explorers.md'
+  - 'building_smart_contract.md'
+  - 'deploying_smart_contract.md'
+  - 'interacting_with_smart_contract.md'

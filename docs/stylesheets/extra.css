@@ -1,3 +1,23 @@
 .md-nav__title {
     display: none;
 }
+
+figure.item {
+    /* To correctly align image, regardless of content height: */
+    vertical-align: top;
+    display: inline-block;
+    /* To horizontally center images and caption */
+    text-align: -webkit-center;
+    /* The width of the container also implies margin around the images. */
+    width: 65px;
+}
+
+img.browser_icon {
+    width: 50px;
+    height: 50px;
+}
+
+.caption {
+    /* Make the caption a block so it occupies its own line. */
+    display: block;
+}
