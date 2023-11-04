@@ -9,7 +9,7 @@ For a real-world deployment, you can utilize JavaScript and/or other web technol
 
 
 
-1. In the left sidebar of the Remix interface, find the **Deployed Contracts** area and expand the information about your **Hello World** smart contract. Remix understands the interface for your smart contract and generates a simple user interface. The blue buttons simple query the smart contract for information but don't modify the state of the contract. The orange button modifies the state of the smart contract and thus will require that you sign the transaction.
+1. In the left sidebar of the Remix interface, find the **Deployed Contracts** area and expand the information about your **Hello World** smart contract. Remix understands the interface for your smart contract and generates a simple user interface. The blue buttons simply query the smart contract for information but don't modify the state of the contract. The orange button modifies the state of the smart contract and thus will require that you sign the transaction.
     <br>
     ![Read the message value from the smart contract](images/interacting_with_smart_contract/small/1_view_current_message.png){ loading=lazy width="600" }
     <br>
@@ -17,7 +17,7 @@ For a real-world deployment, you can utilize JavaScript and/or other web technol
     <br>
     ![The message value is retrieved](images/interacting_with_smart_contract/small/1b_message_retrieved.png){ loading=lazy width="600" }
     <br><br>
-2. Click on the blue **owner** button to see the **owner** value stored by the smart contract. Note that the **owner** value cannot be changed as it was set in the constructor.
+2. Click on the blue **owner** button to see the **owner** value stored by the smart contract. Note that, by design, the **owner** value cannot be changed. It was set in the constructor when the contract was deployed and will always have the same value.
     <br>
     ![Read the owner value from the smart contract](images/interacting_with_smart_contract/small/2_view_owner.png){ loading=lazy width="600" }
     <br>
@@ -33,7 +33,7 @@ For a real-world deployment, you can utilize JavaScript and/or other web technol
     <br>
     ![Confirm the transaction in MetaMask](images/interacting_with_smart_contract/small/3b_confirm_transaction.png){ loading=lazy width="600" }
     <br><br>
-4. If the transaction is successful, you'll see message in the console window indicating the transaction is complete. Expanding the message will reveal additional information, including the text that is emitted by the **updatedMessage** event.
+4. If the transaction is successful, you'll see a message in the console window indicating the transaction is complete. Expanding the message will reveal additional information, including the text that is emitted by the **updatedMessage** event.
     <br>
     ![Successful transaction](images/interacting_with_smart_contract/small/4_transaction_success.png){ loading=lazy width="600" }
     <br>

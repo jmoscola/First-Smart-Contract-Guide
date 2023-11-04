@@ -91,7 +91,7 @@ contract HelloWorld {
     }
 }
 ```
-The **_public_** modifier indicates that this function can be called from outside of this smart contract (i.e. as part of a blockchain transaction). To create functions that can only be called from within the smart contract, set the access modifier to **_private_**.
+The **_public_** modifier indicates that this function can be called from outside of this smart contract (i.e., as part of a blockchain transaction). To create functions that can only be called from within the smart contract, set the access modifier to **_private_**.
 <br><br>
 This is now a complete smart contract and can be deployed as-is.  However, we can add some more functionality to make it a bit more interesting.
     <br><br>
@@ -158,7 +158,7 @@ contract HelloWorld {
     }
 }
 ```
-**_Line 5_** creates the state variable that will store the **_address_** of whomever deploys the contract (i.e. the **_owner_**). 
+**_Line 5_** creates the state variable that will store the **_address_** of whomever deploys the contract (i.e., the **_owner_**). 
 <br><br>
 **_Line 10_** assigns the **_owner_** of the contract using the built-in value **_msg.sender_**. The **_msg_** is the blockchain transaction. It has many properties, including **_sender_** and **_receiver_**. For this smart contract we want the message sender (**_msg.sender_**) to be the owner.
 <br><br>

@@ -45,7 +45,7 @@ The **_[Remix Online IDE](https://remix.ethereum.org/)_** provides all the facil
     <br>
     Click on the down arrow next to the **DEBUG** button to see some information about your smart contract, including the smart contract address.
     <br><br>
-    You can also see the contract name in the left sidebar.  Copy the smart contract address and paste it into **Search** field on the **[Coston2 Blockchain Explorer](https://coston2-explorer.flare.network/)** to find your smart contract on the blockchain.
+    You can also see the contract name in the left sidebar.  Copy the smart contract address and paste it into the **Search** field on the **[Coston2 Blockchain Explorer](https://coston2-explorer.flare.network/)** to find your smart contract on the blockchain.
     <br>
     ![View contract on the Blockchain Explorer](images/deploying_smart_contract/small/5d_view_blockchain_explorer.png){ loading=lazy width="600" }
     <br>
