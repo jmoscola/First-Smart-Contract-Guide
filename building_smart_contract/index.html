@@ -1,0 +1,778 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../blockchain_explorers/">
+      
+      
+        <link rel="next" href="../deploying_smart_contract/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.7">
+    
+    
+      
+        <title>Building a Smart Contract - Creating and Deploying Your First Smart Contract: A Step-by-Step Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="orange">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-a-smart-contract" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Creating and Deploying Your First Smart Contract: A Step-by-Step Guide" class="md-header__button md-logo" aria-label="Creating and Deploying Your First Smart Contract: A Step-by-Step Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3h2Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Creating and Deploying Your First Smart Contract: A Step-by-Step Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building a Smart Contract
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Creating and Deploying Your First Smart Contract: A Step-by-Step Guide" class="md-nav__button md-logo" aria-label="Creating and Deploying Your First Smart Contract: A Step-by-Step Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3h2Z"/></svg>
+
+    </a>
+    Creating and Deploying Your First Smart Contract: A Step-by-Step Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metamask_installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MetaMask Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metamask_configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MetaMask Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acquiring_testnet_tokens/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acquiring Testnet Tokens
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blockchain_explorers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blockchain Explorers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Building a Smart Contract
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Building a Smart Contract
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lets-get-coding" class="md-nav__link">
+    Let's Get Coding
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploying_smart_contract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploying a Smart Contract
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interacting_with_smart_contract/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interacting with your Smart Contract
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="building-a-smart-contract">Building a Smart Contract</h1>
+<p>There are many blockchains and many smart contract platforms in existence. Additionally, there are a wide variety of programming languages available in which one could develop smart contracts. This guide targets the <strong><em><a href="https://ethereum.org/en/developers/docs/evm/">Ethereum Virtual Machine</a></em></strong> (<strong>EVM</strong>) runtime environment. The EVM was originally written for and deployed on the <strong><em><a href="https://ethereum.org">Ethereum</a></em></strong> blockchain. Since then, the EVM has been ported to run as the default smart contract execution environment on numerous blockchains, including the <strong><em><a href="https://flare.network">Flare Network</a></em></strong>.</p>
+<p>Currently, the most common programming language used by smart contract developers is <strong><em><a href="https://soliditylang.org">Solidity</a></em></strong>. It's a fairly straightforward language if you have experience with languages like C or JavaScript. Solidity code is compiled to <em>EVM bytecode</em> which is then deployed onto the blockchain and executed by the EVM as part of a blockchain transaction.  While it's fairly quick to set up a local environment to compile and deploy Solidity programs, it's even quicker to utilize an online IDE. For this guide, we'll use the <strong><em><a href="https://remix-project.org">Remix Project</a></em></strong> which hosts an online IDE capable of compiling and deploying Solidity.</p>
+<p>For this guide, we'll write a simple <strong><em>Hello World</em></strong> smart contract.</p>
+<p><br></p>
+<hr>
+
+<h2 id="lets-get-coding">Let's Get Coding</h2>
+<ol>
+<li>Start by launching the <strong><em><a href="https://remix.ethereum.org/">Remix Online IDE</a></em></strong>. If this is your first time launching the IDE, you'll likely see a welcome message and a very brief tour of the user interface. After the tour, you should have a basic environment that looks like the following.
+    <br>
+    <img alt="Remix Online IDE" loading="lazy" src="../images/building_smart_contract/small/1_remix_home.png" width="600" />
+    <br></li>
+<li>To create a new smart contract file, first click the <strong>contracts</strong> folder in the <strong>FILE EXPLORER</strong> column, then click the <strong>Create new file</strong> icon ( <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> ) just above the <strong>contracts</strong> folder. Name your new smart contract file <strong>HelloWorld.sol</strong> as shown below.
+    <br>
+    <img alt="Create a new file" loading="lazy" src="../images/building_smart_contract/small/2_create_new_file.png" width="600" />
+    <br>
+If your <strong>HelloWorld.sol</strong> file was created outside of the <strong>contracts</strong> folder, simply drag the file into folder.
+    <br><br></li>
+<li>In the left sidebar, open the Solidity compiler settings and the click the compiler version drop down box.
+    <br>
+    <img alt="Open compiler settings" loading="lazy" src="../images/building_smart_contract/small/3_open_solidity_settings.png" width="600" />
+    <br>
+Select compiler version <strong>0.8.17</strong>.
+    <br>
+    <img alt="Select compiler" loading="lazy" src="../images/building_smart_contract/small/4_select_compiler.png" width="600" />
+    <br></li>
+<li>Return to your <strong>HelloWorld.sol</strong> file and enter the following as the first couple lines of your smart contract.
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HelloWorld.sol</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">// SPDX-License-Identifier: MIT</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">pragma solidity</span><span class="w"> </span><span class="err">0.8.17</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<strong><em>Line 1</em></strong> specifies the license for this smart contract. While this isn't strictly required, the Remix Online IDE complains too much if it's not included.<br><br>
+<strong><em>Line 2</em></strong> specifies the version of the compiler that should be used to compile this smart contract.
+    <br><br></li>
+<li>Next, define the contract body using the <strong><em>contract</em></strong> keyword followed by the name of the contract, <strong><em>HelloWorld</em></strong>. Add in some curly-braces to enclose the body.
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HelloWorld.sol</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">// SPDX-License-Identifier: MIT</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">pragma solidity</span><span class="w"> </span><span class="err">0.8.17</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="hll"><span class="k">contract</span><span class="w"> </span><span class="ni">HelloWorld</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="hll">
+</span><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="hll"><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+The contract body is where we'll put state variables as well as the functions necessary to modify those variables.
+    <br><br></li>
+<li>Define your first smart contract variable, a <strong><em>string</em></strong> called <strong><em>message</em></strong> as shown below.
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HelloWorld.sol</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">// SPDX-License-Identifier: MIT</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">pragma solidity</span><span class="w"> </span><span class="err">0.8.17</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="k">contract</span><span class="w"> </span><span class="ni">HelloWorld</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="hll"><span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="k">public </span><span class="nv">message</span><span class="p">;</span>
+</span><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+Since this variable is public, it will exist on the blockchain and be visible to everyone.
+    <br><br></li>
+<li>Time to create a <strong><em>constructor</em></strong> for your smart contract. The constructor runs only once, when the smart contract is deployed. Because of this, the constructor is often used to provide special permission to the account that deployed the smart contract. For now, just create a basic constructor that accepts an initial value for the <strong><em>message</em></strong> value as shown below.
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HelloWorld.sol</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">// SPDX-License-Identifier: MIT</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">pragma solidity</span><span class="w"> </span><span class="err">0.8.17</span><span class="p">;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="k">contract</span><span class="w"> </span><span class="ni">HelloWorld</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="k">public </span><span class="nv">message</span><span class="p">;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="hll"><span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>initialMessage<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="hll"><span class="w">        </span>message<span class="w"> </span><span class="o">=</span><span class="w"> </span>initialMessage<span class="p">;</span>
+</span><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="hll"><span class="w">    </span><span class="p">}</span>
+</span><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+The constructor accepts an argument named <strong><em>initialMessage</em></strong> and assigns the value of that argument to the contract's state variable <strong><em>message</em></strong>.  The <strong><em>memory</em></strong> keyword is one of several keywords that Solidity uses to define where a piece of data should be stored. Specifically, the <strong><em>memory</em></strong> keyword indicates that the value of <strong><em>initialMessage</em></strong> only exists during the lifetime of the constructor. 
+    <br><br></li>
+<li>Next, create a <strong><em>function</em></strong> that updates the value of the state variable <strong><em>message</em></strong>.
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HelloWorld.sol</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1">// SPDX-License-Identifier: MIT</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">pragma solidity</span><span class="w"> </span><span class="err">0.8.17</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="k">contract</span><span class="w"> </span><span class="ni">HelloWorld</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="k">public </span><span class="nv">message</span><span class="p">;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>initialMessage<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">        </span>message<span class="w"> </span><span class="o">=</span><span class="w"> </span>initialMessage<span class="p">;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="hll"><span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateMessage</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newMessage<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="hll"><span class="w">        </span>message<span class="w"> </span><span class="o">=</span><span class="w"> </span>newMessage<span class="p">;</span>
+</span><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="hll"><span class="w">    </span><span class="p">}</span>
+</span><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+The <strong><em>public</em></strong> modifier indicates that this function can be called from outside of this smart contract (i.e., as part of a blockchain transaction). To create functions that can only be called from within the smart contract, set the access modifier to <strong><em>private</em></strong>.
+<br><br>
+This is now a complete smart contract and can be deployed as-is.  However, we can add some more functionality to make it a bit more interesting.
+    <br><br></li>
+<li>Solidity provides the ability to log additional information to the blockchain and to notify external entities of <strong><em>events</em></strong> that occur. To add this to the smart contract, let's define an <strong><em>event</em></strong> that can log some information when the <strong><em>updateMessage</em></strong> function is called.
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HelloWorld.sol</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1">// SPDX-License-Identifier: MIT</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">pragma solidity</span><span class="w"> </span><span class="err">0.8.17</span><span class="p">;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="k">contract</span><span class="w"> </span><span class="ni">HelloWorld</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="k">public </span><span class="nv">message</span><span class="p">;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="hll"><span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">updatedMessage</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">oldMessage</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">newMessage</span><span class="p">);</span>
+</span><a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>initialMessage<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">        </span>message<span class="w"> </span><span class="o">=</span><span class="w"> </span>initialMessage<span class="p">;</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateMessage</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newMessage<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">        </span>message<span class="w"> </span><span class="o">=</span><span class="w"> </span>newMessage<span class="p">;</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+    <br></li>
+<li>Next, <strong><em>emit</em></strong> the event when the <strong><em>updateMessage</em></strong> function is called by adding the following code on lines 13 and 15.
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HelloWorld.sol</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1">// SPDX-License-Identifier: MIT</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">pragma solidity</span><span class="w"> </span><span class="err">0.8.17</span><span class="p">;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="k">contract</span><span class="w"> </span><span class="ni">HelloWorld</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="k">public </span><span class="nv">message</span><span class="p">;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">updatedMessage</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">oldMessage</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">newMessage</span><span class="p">);</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>initialMessage<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">        </span>message<span class="w"> </span><span class="o">=</span><span class="w"> </span>initialMessage<span class="p">;</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateMessage</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newMessage<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="hll"><span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>oldMessage<span class="w"> </span><span class="o">=</span><span class="w"> </span>message<span class="p">;</span>
+</span><a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">        </span>message<span class="w"> </span><span class="o">=</span><span class="w"> </span>newMessage<span class="p">;</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="hll"><span class="w">        </span>emit<span class="w"> </span>updatedMessage<span class="p">(</span>oldMessage<span class="p">,</span><span class="w"> </span>newMessage<span class="p">);</span>
+</span><a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+    <br></li>
+<li>Finally, let's ensure that only the owner of this smart contract can update the <strong><em>message</em></strong> value. To do this, the contract needs to store the address that deployed the contract. This can be done with a new state variable, a quick modification to the <strong><em>constructor</em></strong>, and another quick modification to the <strong><em>updateMessage</em></strong> function as shown below.
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HelloWorld.sol</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1">// SPDX-License-Identifier: MIT</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">pragma solidity</span><span class="w"> </span><span class="err">0.8.17</span><span class="p">;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="k">contract</span><span class="w"> </span><span class="ni">HelloWorld</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="hll"><span class="w">    </span><span class="kt">address</span><span class="w"> </span><span class="k">public </span><span class="nv">owner</span><span class="p">;</span>
+</span><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="k">public </span><span class="nv">message</span><span class="p">;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">    </span><span class="kt">event</span><span class="w"> </span><span class="nv">updatedMessage</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">oldMessage</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nv">newMessage</span><span class="p">);</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">    </span><span class="kt">constructor</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>initialMessage<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="hll"><span class="w">        </span>owner<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">msg.sender</span><span class="p">;</span>
+</span><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">        </span>message<span class="w"> </span><span class="o">=</span><span class="w"> </span>initialMessage<span class="p">;</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="w">    </span><span class="kt">function</span><span class="w"> </span><span class="nv">updateMessage</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>newMessage<span class="p">)</span><span class="w"> </span><span class="kt">public</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="hll"><span class="w">        </span><span class="kt">require</span><span class="p">(</span><span class="k">msg.sender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>owner<span class="p">);</span>
+</span><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="nv">memory</span><span class="w"> </span>oldMessage<span class="w"> </span><span class="o">=</span><span class="w"> </span>message<span class="p">;</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="w">        </span>message<span class="w"> </span><span class="o">=</span><span class="w"> </span>newMessage<span class="p">;</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="w">        </span>emit<span class="w"> </span>updatedMessage<span class="p">(</span>oldMessage<span class="p">,</span><span class="w"> </span>newMessage<span class="p">);</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<strong><em>Line 5</em></strong> creates the state variable that will store the <strong><em>address</em></strong> of whomever deploys the contract (i.e., the <strong><em>owner</em></strong>). 
+<br><br>
+<strong><em>Line 10</em></strong> assigns the <strong><em>owner</em></strong> of the contract using the built-in value <strong><em>msg.sender</em></strong>. The <strong><em>msg</em></strong> is the blockchain transaction. It has many properties, including <strong><em>sender</em></strong> and <strong><em>receiver</em></strong>. For this smart contract we want the message sender (<strong><em>msg.sender</em></strong>) to be the owner.
+<br><br>
+<strong><em>Line 15</em></strong> checks the address of the <strong><em>sender</em></strong> that called <strong><em>updateMessage</em></strong>. If the <strong><em>sender</em></strong> address matches that of the <strong><em>owner</em></strong> the <strong><em>updateMessage</em></strong> function will run and modify the <strong><em>message</em></strong> state variable. If the address of the <strong><em>sender</em></strong> is NOT the owner's, the <strong><em>updateMessage</em></strong> function will fail.
+<br><br></li>
+</ol>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../blockchain_explorers/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Blockchain Explorers">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Blockchain Explorers
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../deploying_smart_contract/" class="md-footer__link md-footer__link--next" aria-label="Next: Deploying a Smart Contract">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Deploying a Smart Contract
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://github.com/jmoscola" target="_blank" rel="noopener">James Moscola</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "navigation.footer", "toc.integrate", "toc.follow", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+    
+  </body>
+</html>
